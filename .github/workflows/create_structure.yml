@@ -1,0 +1,31 @@
+name: Create Structure for Beta2
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Позволяет запуск вручную
+
+jobs:
+  create-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create folder structure and files
+        run: |
+          mkdir -p Заметки Учебники Схемы "Рабочие записи" Пароли
+          echo "hello world попробую прочитать" > Заметки/Заметки1.txt
+          echo "hello world попробую прочитать" > Учебники/Учебники1.txt
+          echo "hello world попробую прочитать" > Схемы/Схемы1.txt
+          echo "hello world попробую прочитать" > "Рабочие записи/Рабочие записи1.txt"
+          echo "hello world попробую прочитать" > Пароли/Пароли1.txt
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "Kristian-Hast"
+          git config --global user.email "newatomicspace@gmail.com"
+          git add .
+          git commit -m "Add folder structure and text files"
+          git push
